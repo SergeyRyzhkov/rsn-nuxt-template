@@ -3,25 +3,42 @@
   "version": "1.0.0",
   "private": false,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "export": "nuxt-ts export",
-    "serve": "nuxt-ts serve",
+    "dev": "nuxts",
+    "build": "nuxts build",
+    "start": "nuxts start",
+    "export": "nuxts export",
+    "serve": "nuxts serve",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.10",
-    "nuxt": "^2.13.0"
+    "nuxt": "latest",
+    "axios": "latest",
+    "vue-router": "latest"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^1.0.3",
-    "@nuxtjs/eslint-config": "^3.0.0",
-    "@nuxtjs/eslint-config-typescript": "^2.0.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.2.0",
-    "eslint-plugin-nuxt": "^1.0.0"
+    "@nuxt/config": "latest",
+    "@nuxt/types": "latest",
+    "@nuxt/typescript-runtime": "latest",
+    "@nuxt/typescript-build": "latest",
+    "@nuxtjs/router": "latest",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "@nuxtjs/eslint-module": "latest",
+    "babel-eslint": "latest",
+    "eslint-plugin-nuxt": "latest",
+    "nuxt-class-component": "latest",
+    "nuxt-property-decorator": "latest",
+    "vuex-module-decorators": "latest",
+    "purgecss-webpack-plugin": "latest",
+    "sass-loader": "latest",
+    "vue-meta": "latest",
+    "nuxt-purgecss": "latest",
+    "core-js": "^2.6.11",
+    "eslint": "^7.0.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6",
+    "@types/node": "^13.13.2",
+    "nodemon": "^2.0.4",
+    "@types/webpack-env": "^1.15.2"
   }
 }
