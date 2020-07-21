@@ -1,13 +1,27 @@
-const isDev = process.env.NODE_ENV !== 'production'
+import { NuxtConfig } from '@nuxt/types'
+import { NuxtWebpackEnv } from '@nuxt/types/config/build'
 
-const config = {
+// const ROOT_DIR: NuxtConfig['rootDir'] = resolve(__dirname)
+const SRC_DIR: NuxtConfig['srcDir'] = 'src/'
+
+const nuxtConfig: NuxtConfig = {
   mode: 'universal',
   modern: true,
-  srcDir: 'src/',
+  srcDir: SRC_DIR,
   components: true,
+
+  pageTransition: {
+    css: false
+  },
 
   loading: {
     color: '#ac1315'
+  },
+
+
+  bodyAttrs: {
+    itemscope: '',
+    itemtype: 'https://schema.org/WebPage'
   },
 
   head: {
@@ -31,11 +45,7 @@ const config = {
       rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.png'
-    },
-    {
-      // rel: 'stylesheet',
-      // href: 'https://unpkg.com/buefy/dist/buefy.min.css',
-    },
+    }
   ],
 
   css: [
@@ -43,32 +53,17 @@ const config = {
 
   script: [
     {
-      // async: '',
-      // src: '//code-ya.jivosite.com/widget/AMTXfSmabC'
     }
   ],
 
-  bodyAttrs: {
-    itemscope: '',
-    itemtype: 'https://schema.org/WebPage'
-  },
-
-  pageTransition: {
-    css: false
-  },
-
   plugins: [
-    // {
-    //   src: '@/plugins/initialize-app'
-    // },
-    // {
-    //   src: '@/plugins/brc-dialog-plugin', mode: 'client'
-    // }
+    {
+      src: '@/plugins/initializeApp'
+    }
   ],
 
-
   router: {
-    // middleware: ['needAuthorize', 'baseMiddleware']
+    middleware: ['requiresAuthorize']
   },
 
   buildModules: [
@@ -80,32 +75,30 @@ const config = {
   ],
 
   modules: [
-    // ['@nuxtjs/router', {
-    //   path: 'src/routers',
-    //   fileName: 'index.ts'
-    // }]
+    ['@nuxtjs/router', {
+      path: 'src/routers',
+      fileName: 'index.ts'
+    }]
   ],
 
   build: {
     extractCSS: true,
-    filenames: {
-      css: ({
-        isDev
-      }) => isDev ? '[name].css' : '[contenthash].css',
-    },
-
     splitChunks: {
       layouts: true,
       pages: true,
       commons: true
-    }
+    },
+    extend: (config, ctx: NuxtWebpackEnv) => {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    },
   },
 
   render: {
     compressor: false,
     resourceHints: true,
-    etag: false,
-    crossorigin: true
+    etag: false
   },
 
 
@@ -121,4 +114,4 @@ const config = {
   }
 }
 
-export default config
+export default nuxtConfig

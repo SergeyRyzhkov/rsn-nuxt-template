@@ -4,30 +4,46 @@
     "module": "esnext",
     "removeComments": true,
     "moduleResolution": "node",
+
     "lib": [
       "esnext",
       "esnext.asynciterable",
       "dom"
     ],
+
     "importHelpers": true,
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
+
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    "typeRoots": [
-      "./src/types",
-      "./node_modules/@types",
-      "./node_modules/@nuxt/types"
+
+    "types": [
+      "@types/node",
+      "@nuxt/types"
     ]
   },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
   "exclude": [
     "node_modules",
     ".nuxt",

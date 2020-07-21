@@ -1,11 +1,13 @@
 {
   "editor.formatOnSave": true,
-  "window.zoomLevel": 0,
   "editor.fontSize": 13,
-  "typescript.suggest.autoImports": true,
-  "typescript.suggest.completeFunctionCalls": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
   "files.autoSave": "off",
   "explorer.confirmDragAndDrop": false,
+
   "files.exclude": {
     "node_modules/*.*": true,
     "**/.git": true,
@@ -17,16 +19,27 @@
     "**/.DS_Store": true,
     "**/node_modules": true
   },
+
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.validate.enable": true,
+
+  "json.format.enable": true,
+
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.format.insertSpaceAfterConstructor": true,
+  "typescript.suggest.autoImports": true,
+  "typescript.suggest.completeFunctionCalls": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.preferences.quoteStyle": "single",
-  "javascript.preferences.quoteStyle": "single",
+
+
   "vetur.format.defaultFormatter.ts": "vscode-typescript",
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "svn.ignoreMissingSvnWarning": true,
-  "typescript.format.insertSpaceAfterConstructor": true,
-  "git.ignoreLimitWarning": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
+  "vetur.validation.script": true,
+  "vetur.validation.style": true,
+  "vetur.validation.template": false,
+  "vetur.experimental.templateInterpolationService": true,
+
+  "eslint.enable": true,
+  "stylelint.enable": true
 }
