@@ -1,7 +1,7 @@
 import { AbstractApiRequest } from './base/AbstractApiRequest';
 import { Context } from '@nuxt/types';
 import { Location } from 'vue-router';
-
+можно в конструктор передать что-то и в реджисте сделть Т с параметрами, как на ноде
 export class BaseService {
   private api: AbstractApiRequest;
   private context: Context;
