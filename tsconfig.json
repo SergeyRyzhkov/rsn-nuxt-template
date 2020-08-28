@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "esnext",es2018
     "module": "esnext",
     "removeComments": true,
     "moduleResolution": "node",
