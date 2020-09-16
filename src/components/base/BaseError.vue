@@ -1,5 +1,5 @@
 <template functional>
-  <main>
+  <section>
     <template v-if="props.status === 404">
       <h2>404. Not found !</h2>
       <nuxt-link :to="{ name: 'main'}">Main page</nuxt-link>
@@ -12,7 +12,7 @@
       <br />
       <nuxt-link :to="{ name: 'main'}">MainPage</nuxt-link>
     </template>
-  </main>
+  </section>
 </template>
 
 

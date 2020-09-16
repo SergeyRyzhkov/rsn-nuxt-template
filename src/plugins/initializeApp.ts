@@ -1,16 +1,15 @@
-
+﻿
 import { Context, Plugin } from '@nuxt/types'
-import { ServiceRegistry } from '@/api/ServiceRegistry';
-import { fetchApi } from '@/api/base/ApiRequestFetch';
-import { ExampleService } from '@/api/ExampleService';
+import { ServiceRegistry } from '@/ServiceRegistry';
+import { ExampleService } from '@/services/ExampleService';
 
+const initializeApp: Plugin = (ctx: Context) => {
 
-const initializeApp: Plugin = (ctx: Context, inject: (key: string, value: any) => void) => {
+  // if (process.server) {
+  ServiceRegistry.instance.register(ExampleService);
+  ServiceRegistry.instance.updateNuxtContext(ctx);
+  //}
 
-  ServiceRegistry.initialize(ctx, fetchApi);
-  ServiceRegistry.register(ExampleService);
-
-  // inject('serviceRegistry', ServiceRegistry);
 }
 
 export default initializeApp;

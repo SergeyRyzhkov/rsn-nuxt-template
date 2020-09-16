@@ -1,14 +1,16 @@
 import ExampleLogin from '@/pages/ExampleLogin.vue'
 
 const propFn = () => {
-  return `Now: ${new Date()}`;
+  return `Now: ${new Date()}`
 }
+
+// FIXME: Зачем default: true ?
 
 export const AuthRoutes = [
   {
     name: 'auth-login',
     path: '/auth/:mode(login|registration)',
-    props: { defauult: true, staticProp: 'Any static prop', propFn },
+    props: { default: true, staticProp: 'Any static prop', propFn },
     component: ExampleLogin,
   },
   {
@@ -17,8 +19,8 @@ export const AuthRoutes = [
     props: true,
     // component: ChangePasswordForm,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
   {
     name: 'auth-restore',
@@ -30,6 +32,5 @@ export const AuthRoutes = [
     path: '/auth/callback/:mode(login|registration|logoff)',
     props: true,
     // component: AuthCallback
-  }
+  },
 ]
-

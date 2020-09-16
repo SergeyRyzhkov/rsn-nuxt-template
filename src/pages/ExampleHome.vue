@@ -5,20 +5,19 @@
     <button @click="updateOpenFoodFacts">Open Food Facts</button>
     <button @click="exampleWithBaseUrl">Servise with base url (end point)</button>
     <nuxt-link :to="{ name: 'protected'}">Protected page</nuxt-link>
-    <textarea>{{cocaColaData}}</textarea>
-    <textarea>{{exampleWithBase}}</textarea>
+    <textarea v-model="cocaColaData"></textarea>
+    <textarea v-model="exampleWithBase"></textarea>
   </main>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, mixins } from 'nuxt-property-decorator'
-import { getModule } from 'vuex-module-decorators'
-import { HeadMetaTagsBuilder } from '@/mixins/HeadMetaTagsBuilder'
-import { ServiceRegistry } from '@/api/ServiceRegistry';
-import { ExampleService } from '@/api/ExampleService';
+import { ServiceRegistry } from '@/ServiceRegistry';
+import { ExampleService } from '@/services/ExampleService';
+import { Component, Vue } from 'nuxt-property-decorator'
+
 
 @Component
-export default class ExampleHome extends mixins(HeadMetaTagsBuilder) {
+export default class ExampleHome extends Vue {
 
   private cocaColaData = {}
   private exampleWithBase = {}
@@ -28,21 +27,17 @@ export default class ExampleHome extends mixins(HeadMetaTagsBuilder) {
   }
 
   public async makeError () {
-    await ServiceRegistry.getService(ExampleService).makeError();
+    await ServiceRegistry.instance.getService(ExampleService).makeError();
   }
 
   public async updateOpenFoodFacts () {
-    const result = await ServiceRegistry.getService(ExampleService).getOpenFoodFacts();
-    console.log(result);
+    const serv = ServiceRegistry.instance.getService(ExampleService);
+    const result = await serv.getOpenFoodFacts();
     this.cocaColaData = result?.data
   }
   public async exampleWithBaseUrl () {
-    const result = await ServiceRegistry.getService(ExampleService).exampleWithBaseUrl();
+    const result = await ServiceRegistry.instance.getService(ExampleService).exampleWithBaseUrl();
     this.exampleWithBase = result?.data
-  }
-
-  private head () {
-    return this.createHead();
   }
 }
 

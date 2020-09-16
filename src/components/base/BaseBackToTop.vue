@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['vue-back-to-top', {active: isVisible}, ...getWrapperClasses]"
+    :class="['vue-back-to-top', { active: isVisible }, ...getWrapperClasses]"
     @click="scrollToWindowTop"
   >
     <slot>
@@ -25,8 +25,7 @@
 </template>
 
 <script lang="ts">
-
-import { Component, Prop, Watch, Vue, Emit } from 'nuxt-property-decorator'
+import { Component, Prop, Vue, Emit } from 'nuxt-property-decorator'
 
 @Component
 export default class BaseBackToTop extends Vue {
@@ -42,7 +41,7 @@ export default class BaseBackToTop extends Vue {
   public isVisible = false
 
   private getWrapperClasses (): string[] {
-    return !!this.wrapperClasses ? this.wrapperClasses.split(' ') : [];
+    return !!this.wrapperClasses ? this.wrapperClasses.split(' ') : []
   }
 
   public mounted () {
@@ -50,7 +49,7 @@ export default class BaseBackToTop extends Vue {
   }
 
   public destroyed () {
-    window.removeEventListener('scroll', this.catchScroll);
+    window.removeEventListener('scroll', this.catchScroll)
   }
 
   public catchScroll () {
@@ -62,12 +61,10 @@ export default class BaseBackToTop extends Vue {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 }
-
-
 </script>
 
 <style lang="scss">

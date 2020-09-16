@@ -8,8 +8,8 @@
     "start": "nuxts start",
     "export": "nuxts export",
     "serve": "nuxts serve",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
+    "lint:all": "eslint --ext .js,.vue,.ts --fix --ignore-path .gitignore .",
+    "lint": "npm run lint:all"
   },
   "dependencies": {
     "nuxt": "latest",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^13.13.2",
-    "@types/webpack-env": "^1.15.2",
+    "@types/webpack-env": "latest",
     "@nuxt/config": "latest",
     "@nuxt/types": "latest",
     "@nuxt/typescript-runtime": "latest",
@@ -27,21 +27,25 @@
     "@nuxtjs/router": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
     "@nuxtjs/eslint-module": "latest",
-    "nuxt-class-component": "latest",
-    "nuxt-property-decorator": "latest",
-    "vuex-module-decorators": "latest",
-    "vue-meta": "latest",
     "babel-eslint": "latest",
+    "prettier": "latest",
+    "eslint-config-prettier": "latest",
     "eslint-plugin-nuxt": "latest",
+    "eslint-plugin-prettier": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "vue-eslint-parser": "latest",
+    "eslint": "latest",
+    "eslint-plugin-vue": "latest",
+    "nuxt-property-decorator": "latest",
+    "vue-meta": "latest",
     "purgecss-webpack-plugin": "latest",
     "sass-loader": "latest",
     "nuxt-purgecss": "latest",
     "core-js": "^2.6.11",
-    "eslint": "^7.0.0",
-    "typescript": "^3.9.6",
-    "nodemon": "^2.0.4",
-    "node-sass": "^4.14.0",
-    "postcss-clean": "latest",
-    "prettier": "^2.0.5"
+    "typescript": "latest",
+    "nodemon": "latest",
+    "node-sass": "latest",
+    "postcss-clean": "latest"
   }
 }

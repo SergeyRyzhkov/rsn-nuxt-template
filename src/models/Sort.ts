@@ -1,6 +1,6 @@
-export default class Sort {
-  public sortId = 0
-  public sortName: string = ''
-  public sortField: string = ''
-  public sortType: string = 'desc'
+export class Sort {
+  sortId = 0
+  sortName = ''
+  sortField = ''
+  sortType = 'desc'
 }

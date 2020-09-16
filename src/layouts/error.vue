@@ -2,7 +2,7 @@
   <main>
     <BaseError
       :status="props.error.statusCode"
-      :statusText="props.error.message"
+      :status-text="props.error.message"
       :error="props.error"
     ></BaseError>
   </main>

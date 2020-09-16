@@ -1,11 +1,9 @@
 import { NuxtConfig } from '@nuxt/types'
-import { NuxtWebpackEnv } from '@nuxt/types/config/build'
 
 // const ROOT_DIR: NuxtConfig['rootDir'] = resolve(__dirname)
 const SRC_DIR: NuxtConfig['srcDir'] = 'src/'
 
 const nuxtConfig: NuxtConfig = {
-  mode: 'universal',
   modern: true,
   srcDir: SRC_DIR,
   components: true,
@@ -88,11 +86,12 @@ const nuxtConfig: NuxtConfig = {
       pages: true,
       commons: true
     },
-    extend: (config, ctx: NuxtWebpackEnv) => {
-      if (ctx.isDev) {
-        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
-      }
-    },
+
+    filenames: {
+      css: ({
+        isDev
+      }) => isDev ? '[name].css' : '[contenthash].css',
+    }
   },
 
   render: {

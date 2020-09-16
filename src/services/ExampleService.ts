@@ -1,6 +1,4 @@
 import { BaseService } from './BaseService';
-import { IApiResponse } from './base/IApiResponse';
-import { axiosApi } from './base/ApiRequestAxios';
 
 export class ExampleService extends BaseService {
 
@@ -14,7 +12,6 @@ export class ExampleService extends BaseService {
   }
 
   public async getOpenFoodFacts () {
-    this.apiRequest = axiosApi;
     this.apiRequest.baseUrl = ''
     const url = 'https://world.openfoodfacts.org/api/v0/product/04963406';
     try {

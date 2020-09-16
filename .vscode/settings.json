@@ -26,6 +26,7 @@
 
   "json.format.enable": true,
 
+  "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
   "typescript.format.insertSpaceAfterConstructor": true,
   "typescript.suggest.autoImports": true,

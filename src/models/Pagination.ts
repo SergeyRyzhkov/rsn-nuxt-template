@@ -1,5 +1,5 @@
-export default class Pagination {
-  public total: number = 0
-  public limit: number = 0
-  public currentPage: number = 1
+export class Pagination {
+  total = 0
+  limit = 0
+  currentPage = 1
 }
