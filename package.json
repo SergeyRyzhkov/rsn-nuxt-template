@@ -22,7 +22,7 @@
     "@types/webpack-env": "latest",
     "@nuxt/config": "latest",
     "@nuxt/types": "latest",
-    "@nuxt/typescript-runtime": "latest",
+    "@nuxt/typescript-runtime": "latest",это в дев зависимости
     "@nuxt/typescript-build": "latest",
     "@nuxtjs/router": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
