@@ -1,0 +1,65 @@
+/*! purgecss start ignore */
+html {
+    // overflow-y: auto;
+}
+
+body {
+    color: $text-color !important;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: $font-stack;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: $link-color;
+
+    // &:hover {
+    //     color: $red;
+    // }
+}
+
+img {
+    display: block;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.page-container {
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .page-content {
+        flex-grow: 1;
+        position: relative;
+    }
+
+    .section-wrapper {
+        width: 100%;
+        max-width: 1280px;
+        padding: 0px 56px;
+        margin: auto;
+        margin-top: 60px;
+
+        @media (max-width: 768px) {
+            padding: 0px 32px;
+        }
+
+        @media (max-width: 360px) {
+            padding: 0px 20px;
+        }
+    }
+}

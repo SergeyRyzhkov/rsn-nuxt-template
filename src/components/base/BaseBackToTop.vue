@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['vue-back-to-top', { active: isVisible }, ...getWrapperClasses]"
+    :class="['vue-back-to-top', { active: isVisible }, ...getWrapperClasses()]"
     @click="scrollToWindowTop"
   >
     <slot>
@@ -68,9 +68,6 @@ export default class BaseBackToTop extends Vue {
 </script>
 
 <style lang="scss">
-@import "@/styles/variables.scss";
-@import "@/styles/typography.scss";
-
 .vue-back-to-top {
   cursor: pointer;
   display: flex;
@@ -98,7 +95,7 @@ export default class BaseBackToTop extends Vue {
 
   .vue-back-to-top_text__default {
     font-size: 20px;
-    font-weight: $font-medium;
+    font-weight: 500;
     color: white;
     text-align: center;
     margin: auto;

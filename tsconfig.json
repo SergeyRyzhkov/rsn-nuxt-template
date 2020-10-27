@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "esnext",
-    "removeComments": true,
+    "removeComments": false,
     "moduleResolution": "node",
 
     "lib": [

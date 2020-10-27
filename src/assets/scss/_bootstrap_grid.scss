@@ -1,0 +1,43 @@
+/*! purgecss start ignore */
+
+// Отступы для сетки Bootstrap
+
+$grid-gap_xl:32px;
+$grid-gap_md:20px;
+
+.col,
+[class*="col-"] {
+    padding: $grid-gap_md 0px 0px $grid-gap_md/2 !important;
+
+    @media (min-width: 768px) {
+        padding: $grid-gap_md 0px 0px $grid-gap_md !important;
+    }
+
+    @media (min-width: 1200px) {
+        padding: $grid-gap_xl 0px 0px $grid-gap_xl !important;
+    }
+}
+
+.row,
+[class*="row-"] {
+    margin-left: -$grid-gap_md !important;
+    margin-right: 0 !important;
+    margin-top: -$grid-gap_md !important;
+    margin-bottom: 0px;
+
+    @media (min-width: 768px) {
+        margin-left: -$grid-gap_md !important;
+        margin-right: 0 !important;
+        margin-top: -$grid-gap_md !important;
+        margin-bottom: 0px;
+    }
+
+    @media (min-width: 1200px) {
+        margin-left: -$grid-gap_xl !important;
+        margin-right: 0 !important;
+        margin-top: -$grid-gap_xl !important;
+        margin-bottom: 0px;
+    }
+}
+
+/*! purgecss end ignore */

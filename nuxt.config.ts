@@ -8,14 +8,15 @@ const nuxtConfig: NuxtConfig = {
   srcDir: SRC_DIR,
   components: true,
 
-  pageTransition: {
-    css: false
-  },
-
   loading: {
     color: '#ac1315'
   },
 
+  loadingIndicator: {
+    name: 'circle',
+    color: '#3B8070',
+    background: 'white'
+  },
 
   bodyAttrs: {
     itemscope: '',
@@ -32,44 +33,49 @@ const nuxtConfig: NuxtConfig = {
         charset: 'utf-8'
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        name: 'viewport', content: 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'
       }
-    ]
+    ],
+
+
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.png'
+      }
+    ],
+
   },
 
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.png'
-    }
-  ],
-
   css: [
-  ],
-
-  script: [
-    {
-    }
+    '~assets/scss/index.scss'
   ],
 
   plugins: [
     {
       src: '@/plugins/initializeApp'
+    },
+    {
+      src: '@/plugins/vue-lazyload'
     }
   ],
 
   router: {
+    prefetchLinks: false,
     middleware: ['requiresAuthorize']
   },
 
   buildModules: [
-    ['@nuxt/typescript-build', {
-      typeCheck: true,
-      ignoreNotFoundWarnings: true,
-      eslint: true
-    }]
+    'nuxt-purgecss',
+    '@nuxtjs/style-resources',
+    'nuxt-webfontloader',
+    [
+      '@nuxt/typescript-build', {
+        typeCheck: true,
+        ignoreNotFoundWarnings: true,
+        eslint: true
+      }]
   ],
 
   modules: [
@@ -81,8 +87,15 @@ const nuxtConfig: NuxtConfig = {
 
   build: {
     extractCSS: true,
+
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
+    },
+
     splitChunks: {
-      layouts: true,
+      layouts: false,
       pages: true,
       commons: true
     },
@@ -96,7 +109,7 @@ const nuxtConfig: NuxtConfig = {
 
   render: {
     compressor: false,
-    resourceHints: true,
+    resourceHints: false,
     etag: false
   },
 
@@ -105,6 +118,16 @@ const nuxtConfig: NuxtConfig = {
     mode: 'postcss'
     // whitelistPatterns: [/brc.*?$/, /vgt.*?$/, /vue.*?$/, /ql.*?$/, /theme.*?$/],
     // whitelist: ['label', 'field-label']
+  },
+
+  webfontloader: {
+    google: {
+      families: ['Montserrat:400,500,600,700:cyrillic&display=swap']
+    }
+  },
+
+  styleResources: {
+    scss: ['~assets/scss/_variables.scss']
   },
 
   server: {

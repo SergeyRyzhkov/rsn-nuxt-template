@@ -1,11 +1,11 @@
 import { Context } from "@nuxt/types";
 import { Location } from "vue-router";
 import { AbstractApiRequest } from "@/api/core/AbstractApiRequest";
-import { axiosApi } from '@/api/core/AxiosRequest';
+import AxiosRequest from '@/api/core/AxiosRequest';
 
 export class BaseService {
   private api: AbstractApiRequest;
-  private context: Context;
+  protected context: Context;
 
   public injectNuxtContext (ctx: Context) {
     this.context = ctx;
@@ -16,7 +16,10 @@ export class BaseService {
   }
 
   public get apiRequest () {
-    return this.api || axiosApi;
+    if (!this.api) {
+      this.api = new AxiosRequest()
+    }
+    return this.api;
   }
 
   public notAuthRedirect () {
@@ -40,11 +43,16 @@ export class BaseService {
     }
   }
 
-  protected getIdBySlug (slug: string) {
+  public getIdBySlug (slug: string) {
     let result = 0;
-    if (!!slug && slug.indexOf("-") > -1) {
+
+    if (!!slug && slug.toString().indexOf("-") > -1) {
       const tryGet = Number(slug.split("-").pop());
       result = Number.isNaN(tryGet) ? 0 : tryGet;
+    }
+
+    if (!!slug && result === 0) {
+      result = Number(slug);
     }
     return result;
   }

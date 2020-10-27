@@ -1,13 +1,10 @@
 <template>
-  <div>
-    <Nuxt />
+  <div class="page-container">
+    <TheLayoutHeader></TheLayoutHeader>
+    <nuxt></nuxt>
+    <TheLayoutFooter v-once></TheLayoutFooter>
     <client-only>
       <BaseBackToTop></BaseBackToTop>
     </client-only>
   </div>
 </template>
-
-
-<style lang="scss">
-@import "@/styles/index.scss";
-</style>

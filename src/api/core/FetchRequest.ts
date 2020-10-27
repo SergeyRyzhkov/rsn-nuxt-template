@@ -1,34 +1,41 @@
-import { AbstractApiRequest } from './AbstractApiRequest';
+import { AbstractApiRequest, ResponseType } from './AbstractApiRequest';
 import { ApiResponse } from './ApiResponse';
 
-class FetchRequest extends AbstractApiRequest {
+export default class FetchRequest extends AbstractApiRequest {
 
-  protected async processRequest (url: string, config?: any, data?: any): Promise<ApiResponse> {
-    const reqData = !!data ? (Object(data) === data ? data : JSON.stringify(data)) : null
+  protected async processRequest (url: string, responseType: ResponseType, config?: any, data?: any): Promise<ApiResponse> {
+
+    const reqData = !!data && data instanceof FormData ? data : (!!data ? (Object(data) === data ? JSON.stringify(data) : data) : null)
+
+    if (!!reqData && !(data instanceof FormData)) {
+      config.headers = {
+        ...config.headers, ...{
+          'Content-Type': 'application/json'
+        }
+      }
+    }
+
     const extConfig = { ...config, ...{ body: reqData } }
-    return this.processResponse(fetch(url, extConfig));
+    return this.processResponse(responseType, fetch(url, extConfig));
   }
 
-  private async processResponse (fetchResult: Promise<Response>): Promise<ApiResponse> {
+  private async processResponse (responseType: ResponseType, fetchResult: Promise<Response>): Promise<ApiResponse> {
     let response: ApiResponse;
     try {
       const result = await fetchResult;
-      response = this.createResponse(result);
 
-      //FIXME: 399 ? может более 299 ?
-      if (!result.ok || response.status > 399) {
+      response = this.createResponse(result);
+      response.data = responseType === ResponseType.JSON ? await result.json() : await result.text();
+
+      if (!result.ok || result.status > 399) {
         return Promise.reject(response);
       }
-      response.data = await result.json();
+
       return Promise.resolve(response);
     }
     catch (err) {
-      response = this.createResponse(!!err.response ? err.response : { data: null, status: 500, statusText: err.message });
-      return Promise.reject(response);
+      return Promise.reject(this.createErrorResponse(err));
     }
   }
 }
-
-
-export const fetchApi = new FetchRequest();
 

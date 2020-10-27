@@ -1,4 +1,4 @@
-import { HeadMetaTagInfo } from '@/models/HeadMetaTagInfo'
+import { HeadMetaTagInfo } from '@/models/core/HeadMetaTagInfo'
 import { AppConfig } from '@/AppConfig'
 
 export class HeadMetaTagsBuilder {

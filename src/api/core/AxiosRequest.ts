@@ -1,12 +1,19 @@
-import { AbstractApiRequest } from './AbstractApiRequest'
+import { AbstractApiRequest, ResponseType } from './AbstractApiRequest'
 import { ApiResponse } from './ApiResponse'
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 
-class AxiosRequest extends AbstractApiRequest {
-  withCredentials: true
-  private axiosInstance: AxiosInstance = axios.create()
 
-  protected async processRequest (url: string, config?: any, data?: any): Promise<ApiResponse> {
+export default class AxiosRequest extends AbstractApiRequest {
+  private options?: any
+  private axiosInstance: AxiosInstance
+
+  constructor (options?: any, baseUrl?: string) {
+    super(options, baseUrl)
+    this.options = options
+    this.axiosInstance = axios.create(this.options)
+  }
+
+  protected async processRequest (url: string, responseType: ResponseType, config?: any, data?: any): Promise<ApiResponse> {
     const extConfig = { ...config, ...{ data, url } }
     return this.processResponse(this.axiosInstance.request(extConfig))
   }
@@ -18,14 +25,8 @@ class AxiosRequest extends AbstractApiRequest {
       response = this.createResponse(result)
       return Promise.resolve(response)
     } catch (err) {
-      response = this.createResponse(
-        !!err.response
-          ? err.response
-          : { data: null, status: 500, statusText: err.message }
-      )
-      return Promise.reject(response)
+      return Promise.reject(this.createErrorResponse(err))
     }
   }
 }
 
-export const axiosApi = new AxiosRequest()
